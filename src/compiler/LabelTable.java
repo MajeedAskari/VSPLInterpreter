@@ -14,11 +14,11 @@ public class LabelTable {
 		return false;
 	}
 
-	public void add(String name, int value) throws Exception {
+	public void add(String name, int lineNumber) throws Exception {
 		if (contains(name))
 			throw new Exception("label" + name + "already exists!");
 		else {
-			labels.add(new Label(name, value));
+			labels.add(new Label(name, lineNumber));
 		}
 	}
 
@@ -27,7 +27,7 @@ public class LabelTable {
 			if (label.name.equals(name))
 				return label.lineNumber;
 		}
-		throw new Exception("label" + name + "not found!");
+		throw new Exception("label " + name + " not found!");
 	}
 
 }
@@ -39,10 +39,10 @@ class Label {
 	String name;
 	int lineNumber;
 
-	public Label(String name, int line) {
+	public Label(String name, int lineNumber) {
 		super();
 		this.name = name;
-		this.line = line;
+		this.lineNumber = lineNumber;
 	}
 
 }

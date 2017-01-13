@@ -3,10 +3,10 @@ package compiler;
 import java.util.ArrayList;
 
 public class SymbolTable {
-	ArrayList<SymbolTableRow> table = new ArrayList<>();
+	ArrayList<Variable> table = new ArrayList<>();
 
 	public boolean contains(String name) {
-		for (SymbolTableRow row : table) {
+		for (Variable row : table) {
 			if (row.getName().equals(name))
 				return true;
 		}
@@ -17,7 +17,7 @@ public class SymbolTable {
 		if (contains(name))
 			throw new Exception(name + "already exists");
 		else {
-			table.add(new SymbolTableRow(name, type, value));
+			table.add(new Variable(name, type, value));
 		}
 
 	}
@@ -26,7 +26,7 @@ public class SymbolTable {
 		if (!contains(name))
 			throw new Exception(name + "doesn't exsit");
 		else {
-			for (SymbolTableRow row : table) {
+			for (Variable row : table) {
 				if (row.getName().equals(name))
 					return row.getValue();
 			}
@@ -36,9 +36,9 @@ public class SymbolTable {
 
 	public void setValue(String name, float value) throws Exception {
 		if (!contains(name))
-			throw new Exception(name + "doesn't exsit");
+			throw new Exception(name + " doesn't exsit");
 		else {
-			for (SymbolTableRow row : table) {
+			for (Variable row : table) {
 				if (row.getName().equals(name)) {
 					if (row.getType().equals("int"))
 						row.setValue((int) value);
@@ -52,11 +52,11 @@ public class SymbolTable {
 
 	public String getType(String name) throws Exception {
 		if (!contains(name))
-			throw new Exception(name + "doesn't exsit");
+			throw new Exception(name + " doesn't exsit");
 		else {
-			for (SymbolTableRow row : table) {
+			for (Variable row : table) {
 				if (row.getName().equals(name))
-					return row.getName();
+					return row.getType();
 			}
 		}
 		return "";
@@ -64,11 +64,11 @@ public class SymbolTable {
 
 }
 
-class SymbolTableRow {
+class Variable {
 	private String name, type;
 	private float value;
 
-	public SymbolTableRow(String name, String type, float value) {
+	public Variable(String name, String type, float value) {
 		super();
 		this.name = name;
 		this.type = type;

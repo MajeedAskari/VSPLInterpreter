@@ -9,12 +9,11 @@ public class Commander {
 		Scanner sc = new Scanner(System.in);
 		
 		while(true){
-			
 			String command = sc.nextLine();
 			String[] splitCommand = command.split(" ");
 			if(splitCommand[0].equals("myVSPLcompiler")){
 				if(splitCommand[1].equals("-h")){
-					// showHelp(); TODO
+					 showHelp();
 				} else {
 					Compiler cmp = new Compiler(splitCommand[1]);
 				}
@@ -22,6 +21,11 @@ public class Commander {
 				System.out.println("Wrong command");
 			}
 		}
+	}
+	
+	public static void showHelp(){
+		System.out.println("help");
+		System.out.println("commands : \n int,float,input,otput,jump,label, ....");
 	}
 
 }
